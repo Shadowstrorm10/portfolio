@@ -21,13 +21,13 @@ const Header = () => {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex space-x-10">
-            <Link href="/" className="text-lg text-gray-800 transition duration-300">
+            <Link href="/" className="text-lg text-gray-800 hover:text-blue-500 transition duration-300">
               Home
             </Link>
-            <Link href="/about" className="text-lg text-gray-800 transition duration-300">
+            <Link href="/about" className="text-lg text-gray-800 hover:text-blue-500 transition duration-300">
               About
             </Link>
-            <Link href="/contact" className="text-lg text-gray-800 transition duration-300">
+            <Link href="/contact" className="text-lg text-gray-800 hover:text-blue-500 transition duration-300">
               Contact
             </Link>
           </nav>
@@ -58,7 +58,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Sidebar (Mobile Menu) */}
+      {/* Sidebar Overlay */}
       <div
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-all duration-300 ${
           menuOpen ? "block" : "hidden"
@@ -66,10 +66,11 @@ const Header = () => {
         onClick={toggleMenu}
       ></div>
 
+      {/* Sidebar (Mobile Menu) */}
       <div
-        className={`fixed top-0 left-0 h-full bg-white w-64 shadow-lg transition-all duration-300 transform ${
+        className={`fixed top-0 left-0 h-full bg-white w-64 shadow-lg z-50 transition-transform duration-300 transform ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
-        } z-50`}
+        } will-change-transform`}
       >
         {/* Close Button */}
         <div className="flex justify-end p-4">
@@ -96,13 +97,25 @@ const Header = () => {
 
         {/* Sidebar Links */}
         <div className="flex flex-col items-center space-y-6 pt-12">
-          <Link href="/" className="text-xl text-gray-800 transition duration-300" onClick={toggleMenu}>
+          <Link
+            href="/"
+            className="text-xl text-gray-800 hover:text-blue-500 transition duration-300"
+            onClick={toggleMenu}
+          >
             Home
           </Link>
-          <Link href="/about" className="text-xl text-gray-800 transition duration-300" onClick={toggleMenu}>
+          <Link
+            href="/about"
+            className="text-xl text-gray-800 hover:text-blue-500 transition duration-300"
+            onClick={toggleMenu}
+          >
             About
           </Link>
-          <Link href="/contact" className="text-xl text-gray-800 transition duration-300" onClick={toggleMenu}>
+          <Link
+            href="/contact"
+            className="text-xl text-gray-800 hover:text-blue-500 transition duration-300"
+            onClick={toggleMenu}
+          >
             Contact
           </Link>
         </div>
