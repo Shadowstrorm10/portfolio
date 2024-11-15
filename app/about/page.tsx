@@ -3,7 +3,7 @@
 import Header from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
-import { FaReact, FaHtml5, FaCss3Alt, FaJs, FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from "react-icons/fa"; // Importing relevant icons
+import { FaReact, FaHtml5, FaCss3Alt, FaJs, FaLinkedin, FaEnvelope, FaInstagram } from "react-icons/fa"; // Importing relevant icons
 
 const About: React.FC = () => {
   return (
