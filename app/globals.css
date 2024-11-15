@@ -1,3 +1,4 @@
+/* Tailwind CSS imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,8 +15,277 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Twinkling Stars Animation */
+@keyframes twinkle {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* Starry Background */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black; /* Space background */
+  overflow: hidden;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+  opacity: 0.5;
+}
+
+.star-glow {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* Shooting Star Animation */
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateY(-50px); /* Move to the right and up */
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: white;
+  border-radius: 50%;
+  animation: shoot 2s forwards linear;
+}
+
+.shooting-star-beam {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 30px;
+  width: 1px;
+  background-color: white;
+  opacity: 0;
+  animation: beam 2s forwards;
+}
+
+@keyframes beam {
+  0% {
+    height: 30px;
+    opacity: 0.5;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+/* Loader */
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glitch Text Effect */
+.glitch {
+  position: relative;
+  color: white;
+  text-shadow:
+    1px 1px 0 rgba(255, 0, 0, 0.8),
+    -1px -1px 0 rgba(0, 255, 0, 0.8),
+    1px -1px 0 rgba(0, 0, 255, 0.8),
+    -1px 1px 0 rgba(255, 255, 0, 0.8);
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(2px, 2px);
+  }
+  20% {
+    transform: translate(-2px, -2px);
+  }
+  40% {
+    transform: translate(2px, -2px);
+  }
+  60% {
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    transform: translate(2px, 2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Fade-in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-in;
+}
+
+/* Page Transitions */
+.page-transition-right {
+  animation: slideRight 0.5s forwards ease;
+}
+
+.page-transition-left {
+  animation: slideLeft 0.5s forwards ease;
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Underline animation */
+@keyframes underlineAnimation {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.underline-animation {
+  position: relative;
+  display: inline-block;
+  color: black;
+  padding-bottom: 4px;
+}
+
+.underline-animation::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: gray;
+}
+
+.underline-animation::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.underline-animation:hover::after {
+  transform: scaleX(1);
+}
+.hola-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hola-o {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url('/user.jpg'); /* Replace with the path to your image */
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%; /* Makes it circular */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em; /* Adjust size to fit with the other letters */
+  color: transparent; /* Hide the text inside the "o" */
+}
+
+/* styles/glow-effect.css */
+.light-effect-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: -1; /* Ensure it is behind the navbar */
+}
+
+.light-effect {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.6);
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 30px 20px rgba(255, 255, 255, 1);
+  }
 }
