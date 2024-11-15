@@ -1,4 +1,4 @@
-'use client'; // Ensure this file is a client-side component
+"use client"; // Ensure this file is a client-side component
 
 import { useState, useEffect } from "react";
 
@@ -53,11 +53,15 @@ const Preloader: React.FC<{ onLoadComplete: () => void }> = ({ onLoadComplete })
   return (
     <div
       className="flex items-center justify-center min-h-screen bg-black text-black relative"
-      style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
       <div className="flex flex-col items-center space-y-6 p-6">
         {/* Spinner */}
-        <div className="border-8 border-t-transparent border-black w-24 h-24 rounded-full animate-spin mb-6"></div>
+        <div className="border-8 border-t-transparent border-white w-24 h-24 rounded-full animate-spin mb-6"></div>
 
         {/* Greeting Text */}
         <div className="text-3xl font-semibold opacity-90 transition-opacity duration-700">{greeting}</div>

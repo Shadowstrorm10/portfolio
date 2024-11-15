@@ -4,80 +4,31 @@ import { useState } from "react";
 import Link from "next/link";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
-    <header className="bg-white bg-opacity-90 shadow-2xl fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ease-in-out">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="text-3xl font-bold text-gray-800 transition duration-300">
-            <Link href="/">Sheril Dh.</Link>
-          </div>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex space-x-10">
-            <Link href="/" className="text-lg text-gray-800 hover:text-blue-500 transition duration-300">
-              Home
-            </Link>
-            <Link href="/about" className="text-lg text-gray-800 hover:text-blue-500 transition duration-300">
-              About
-            </Link>
-            <Link href="/contact" className="text-lg text-gray-800 hover:text-blue-500 transition duration-300">
-              Contact
-            </Link>
-          </nav>
-
-          {/* Mobile Menu Button (Hamburger) */}
-          <div className="md:hidden flex items-center">
-            <button
-              type="button"
-              onClick={toggleMenu}
-              className="text-gray-800 focus:outline-none"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
-          </div>
+    <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <div className="text-2xl font-bold text-gray-800">
+          <Link href="/">Sheril Dh.</Link>
         </div>
-      </div>
 
-      {/* Sidebar Overlay */}
-      <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-all duration-300 ${
-          menuOpen ? "block" : "hidden"
-        }`}
-        onClick={toggleMenu}
-      ></div>
-
-      {/* Sidebar (Mobile Menu) */}
-      <div
-        className={`fixed top-0 left-0 h-full bg-white w-64 shadow-lg z-50 transition-transform duration-300 transform ${
-          menuOpen ? "translate-x-0" : "-translate-x-full"
-        } will-change-transform`}
-      >
-        {/* Close Button */}
-        <div className="flex justify-end p-4">
-          <button
-            onClick={toggleMenu}
-            className="text-gray-800 focus:outline-none"
-          >
+        {/* Mobile Menu Button */}
+        <button
+          onClick={toggleMenu}
+          className="md:hidden text-gray-800 focus:outline-none"
+          aria-label="Toggle Menu"
+        >
+          {isMenuOpen ? (
             <svg
               className="w-6 h-6"
               fill="none"
@@ -92,34 +43,66 @@ const Header = () => {
                 d="M6 18L18 6M6 6l12 12"
               ></path>
             </svg>
-          </button>
-        </div>
+          ) : (
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          )}
+        </button>
 
-        {/* Sidebar Links */}
-        <div className="flex flex-col items-center space-y-6 pt-12">
-          <Link
-            href="/"
-            className="text-xl text-gray-800 hover:text-blue-500 transition duration-300"
-            onClick={toggleMenu}
-          >
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-8">
+          <Link href="/" className="text-gray-800 hover:text-blue-500">
             Home
           </Link>
-          <Link
-            href="/about"
-            className="text-xl text-gray-800 hover:text-blue-500 transition duration-300"
-            onClick={toggleMenu}
-          >
+          <Link href="/about" className="text-gray-800 hover:text-blue-500">
             About
           </Link>
-          <Link
-            href="/contact"
-            className="text-xl text-gray-800 hover:text-blue-500 transition duration-300"
-            onClick={toggleMenu}
-          >
+          <Link href="/contact" className="text-gray-800 hover:text-blue-500">
             Contact
           </Link>
-        </div>
+        </nav>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 bg-white z-40 transition-all">
+          <div className="flex flex-col items-center justify-center h-screen space-y-6">
+            <Link
+              href="/"
+              className="text-xl text-gray-800 hover:text-blue-500"
+              onClick={closeMenu}
+            >
+              Home
+            </Link>
+            <Link
+              href="/about"
+              className="text-xl text-gray-800 hover:text-blue-500"
+              onClick={closeMenu}
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="text-xl text-gray-800 hover:text-blue-500"
+              onClick={closeMenu}
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
